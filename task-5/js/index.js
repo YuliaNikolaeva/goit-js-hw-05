@@ -17,7 +17,7 @@ class Car {
   static getSpecs(car){
     car.speed === 0 && !this.isOn ? // После mustang.turnOff(), выводит послднюю скорость и дистанцию
     console.log(
-      `maxSpeed: ${car.maxSpeed}, Last speed: ${car.lastSpeed}, isOn: ${car.isOn}, Last distance: ${car.distance}, price: ${car.price}`
+      `maxSpeed: ${car.maxSpeed}, Last speed: ${car.lastSpeed}, current speed: ${car.speed}, isOn: ${car.isOn}, Last distance: ${car.distance}, price: ${car.price}`
     )
      : console.log(
        `maxSpeed: ${car.maxSpeed}, speed: ${car.speed}, isOn: ${car.isOn}, distance: ${car.distance}, price: ${car.price}`
