@@ -5,18 +5,23 @@
 */
 
 class Car {
-  constructor({maxSpeed = 0, speed, isOn, distance, price = 0}) {
+  constructor({maxSpeed = 0, speed, lastSpeed, isOn, distance, price = 0}) {
     this.maxSpeed = maxSpeed;
     this.speed = 0;
+    this.lastSpeed = 0; //Добавила, чтобы посчитать расстояние после вызова mustang.turnOff();
     this.isOn = false;
     this.distance = 0;
     this._price = price;
   }
 
   static getSpecs(car){
+    car.speed === 0 && !this.isOn ? // После mustang.turnOff(), выводит послднюю скорость и дистанцию
     console.log(
-      `maxSpeed: ${car.maxSpeed}, speed: ${car.speed}, isOn: ${car.isOn}, distance: ${car.distance}, price: ${car.price}`
-    );
+      `maxSpeed: ${car.maxSpeed}, Last speed: ${car.lastSpeed}, isOn: ${car.isOn}, Last distance: ${car.distance}, price: ${car.price}`
+    )
+     : console.log(
+       `maxSpeed: ${car.maxSpeed}, speed: ${car.speed}, isOn: ${car.isOn}, distance: ${car.distance}, price: ${car.price}`
+       )
   }
 
   get price(){
@@ -33,6 +38,7 @@ class Car {
 
   turnOff() {
     this.isOn = false;
+    this.lastSpeed = this.speed;
     this.speed = 0;
   }
 
@@ -44,8 +50,9 @@ class Car {
 
   decelerate(value) {
      this.speed = (this.speed - value) < 0 ? 
-    0 
+     0
     : this.speed - value;
+    console.log('test2', this.speed);
   }
   
   drive(hours) {
@@ -68,8 +75,10 @@ mustang.decelerate(20);
 mustang.drive(1);
 mustang.turnOff();
 
+
 Car.getSpecs(mustang);
 // maxSpeed: 200, speed: 30, isOn: false, distance: 130, price: 2000
+
 
 console.log(mustang.price); // 2000
 mustang.price = 4000;
